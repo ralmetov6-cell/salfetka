@@ -1,22 +1,12 @@
-﻿using System;
-using System.Linq;
+﻿using ConsoleApp6;
+using System;
 
-namespace OOP_Lab1
+namespace ConsoleApp6
 {
-	class Student
+	public class Student : Person
 	{
-		
-		private string fullName;
 		private string group;
-		private int course;
-		private int[] grades;
-
-		
-		public string FullName
-		{
-			get { return fullName; }
-			set { fullName = value; }
-		}
+		private double averageGrade;
 
 		public string Group
 		{
@@ -24,44 +14,24 @@ namespace OOP_Lab1
 			set { group = value; }
 		}
 
-		public int Course
+		public double AverageGrade
 		{
-			get { return course; }
-			set { course = value; }
+			get { return averageGrade; }
+			set { averageGrade = value; }
 		}
 
-		public int[] Grades
+		// Вызов конструктора базового класса через base
+		public Student(string fullName, int birthYear, string group, double averageGrade)
+			: base(fullName, birthYear)
 		{
-			get { return grades; }
-			set { grades = value; }
+			Group = group;
+			AverageGrade = averageGrade;
 		}
 
-		
-		public Student(string name, string groupName, int courseNumber, params int[] marks)
+		// Переопределение виртуального метода базового класса
+		public override void Study()
 		{
-			FullName = name;
-			Group = groupName;
-			Course = courseNumber;
-			Grades = marks;
-		}
-
-		
-		public double GetAverage()
-		{
-			return Grades.Average();
-		}
-
-		
-		public void NextCourse()
-		{
-			Course++;
-		}
-
-		
-		public void GetMinMax(out int min, out int max)
-		{
-			min = Grades.Min();
-			max = Grades.Max();
+			Console.WriteLine($"Студент {FullName} (Группа: {Group}) учится. Средний балл: {AverageGrade}");
 		}
 	}
 }
